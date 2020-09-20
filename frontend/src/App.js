@@ -29,7 +29,8 @@ function App() {
       const response = await axios.get(
         `http://localhost:5000/subjectivity?text=${textToAnalyze}`
       );
-      setSubData(response.data.subjectivity);
+      console.log(response.data);
+      setSubData(response.data);
     }
     setLoading(false);
   };
@@ -55,8 +56,7 @@ function App() {
     console.log(toneData.document_tone.tones);
     const overallTone = toneData.document_tone.tones.map((tone) => (
       <div className="wrapper">
-        <div className={getColor(tone)
-        }></div>
+        <div className={getColor(tone)}></div>
         <h3>
           {tone.tone_name} - {Math.floor(tone.score * 100)}%
         </h3>
@@ -95,10 +95,18 @@ function App() {
 
   const displaySubData = () => {
     return (
-      <Card width="40%" style={{ margin: 10 }}>
+      <Card width="70%" style={{ margin: 10 }}>
         <CardContent>
-          <h3>Subjectivity: </h3>
-          <p>{Math.floor(subData * 100)}%</p>
+          <h3>
+            Overall Subjectivity: {Math.floor(subData.subjectivity * 100)}%
+          </h3>
+          {subData.sentence_subjectivity.map((sentence, index) => {
+            return (
+              <p key={index}>
+                {Math.floor(sentence.subjectivity * 100)}% : {sentence.sentence}
+              </p>
+            );
+          })}
         </CardContent>
       </Card>
     );
