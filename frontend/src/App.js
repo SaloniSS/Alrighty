@@ -53,9 +53,13 @@ function App() {
   const displayToneData = () => {
     console.log(toneData.document_tone.tones);
     const overallTone = toneData.document_tone.tones.map((tone) => (
-      <h3>
-        {tone.tone_name} - {Math.floor(tone.score * 100)}%
-      </h3>
+      <div className="wrapper">
+        <div className={getColor(tone)
+            }></div>
+        <h3>
+          {tone.tone_name} - {Math.floor(tone.score * 100)}%
+        </h3>
+      </div>
     ));
 
     let lineByLine = null;
@@ -151,7 +155,7 @@ function App() {
         Analyze
         {loading && <CircularProgress size={24} />}
       </Button>
-      <div className="App">
+      <div className="card">
         {toneData && displayToneData()}
         {isChecked && subData && displaySubData()}
       </div>
