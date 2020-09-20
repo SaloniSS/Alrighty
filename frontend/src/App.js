@@ -153,7 +153,7 @@ function App() {
     <div className="App">
       <img src={logo} />
       <div>
-        Type
+        Type:
         <Select
           value={type}
           onChange={typeChange}
@@ -162,7 +162,7 @@ function App() {
           <MenuItem value="Text">Text</MenuItem>
           <MenuItem value="Audio">Audio</MenuItem>
         </Select>
-        Online Article
+        Subjectivity:
         <Checkbox
           checked={isChecked}
           onChange={() => setIsChecked(!isChecked)}
