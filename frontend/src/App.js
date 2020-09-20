@@ -3,7 +3,6 @@ import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
-import Container from "@material-ui/core/Container";
 import MenuItem from "@material-ui/core/MenuItem";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -36,14 +35,16 @@ function App() {
 
   const getColor = (tone) => {
     switch (tone.tone_id) {
-      case "analytic":
-        return "blue";
-      case "tentative":
+      case "analytical":
         return "green";
-      case "joy":
-        return "blue";
-      case "sadness":
+      case "tentative":
         return "red";
+      case "joy":
+        return "orange";
+      case "sadness":
+        return "purple";
+      case "confident":
+        return "blue";
       default:
         return "black";
     }
@@ -52,9 +53,13 @@ function App() {
   const displayToneData = () => {
     console.log(toneData.document_tone.tones);
     const overallTone = toneData.document_tone.tones.map((tone) => (
-      <h3>
-        {tone.tone_name} - {Math.floor(tone.score * 100)}%
-      </h3>
+      <div className="wrapper">
+        <div className={getColor(tone)
+            }></div>
+        <h3>
+          {tone.tone_name} - {Math.floor(tone.score * 100)}%
+        </h3>
+      </div>
     ));
 
     let lineByLine = null;
@@ -150,7 +155,7 @@ function App() {
         Analyze
         {loading && <CircularProgress size={24} />}
       </Button>
-      <div className="App">
+      <div className="card">
         {toneData && displayToneData()}
         {isChecked && subData && displaySubData()}
       </div>
