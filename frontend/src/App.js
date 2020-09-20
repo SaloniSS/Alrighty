@@ -8,7 +8,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
-import logo from './logo.png';
+import logo from "./logo.png";
 
 import "./App.css";
 
@@ -54,6 +54,32 @@ function App() {
 
   const displayToneData = () => {
     console.log(toneData.document_tone.tones);
+
+    const colorLegend = (
+      <div>
+        <div className="wrapper">
+          <div className={getColor({ tone_id: "analytical" })}></div>
+          <p>Analytical</p>
+        </div>
+        <div className="wrapper">
+          <div className={getColor({ tone_id: "tentative" })}></div>
+          <p>Tentative</p>
+        </div>
+        <div className="wrapper">
+          <div className={getColor({ tone_id: "joy" })}></div>
+          <p>Joy</p>
+        </div>
+        <div className="wrapper">
+          <div className={getColor({ tone_id: "sadness" })}></div>
+          <p>Sadness</p>
+        </div>
+        <div className="wrapper">
+          <div className={getColor({ tone_id: "confident" })}></div>
+          <p>Confident</p>
+        </div>
+      </div>
+    );
+
     const overallTone = toneData.document_tone.tones.map((tone) => (
       <div className="wrapper">
         <div className={getColor(tone)}></div>
@@ -85,7 +111,7 @@ function App() {
       <Card style={{ width: "85%", margin: "1rem" }}>
         {lineByLine && (
           <CardContent>
-            {overallTone} <p>{lineByLine}</p>
+            {overallTone} {colorLegend} <p>{lineByLine}</p>
           </CardContent>
         )}
         {!lineByLine && <p>Needs more input data.</p>}
@@ -125,8 +151,7 @@ function App() {
 
   return (
     <div className="App">
-
-      <img src={logo}/>
+      <img src={logo} />
       <div>
         Type
         <Select
@@ -164,7 +189,6 @@ function App() {
         Analyze
         {loading && <CircularProgress size={24} />}
       </Button>
-
 
       <div className="card">
         {toneData && displayToneData()}
