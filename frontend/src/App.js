@@ -56,7 +56,7 @@ function App() {
     console.log(toneData.document_tone.tones);
 
     const colorLegend = (
-      <div>
+      <div className="legend">
         <div className="wrapper">
           <div className={getColor({ tone_id: "analytical" })}></div>
           <p>Analytical</p>

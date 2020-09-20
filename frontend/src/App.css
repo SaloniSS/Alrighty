@@ -22,6 +22,20 @@
   margin: 0;
 }
 
+.legend {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(245, 245, 245);
+  border-radius: 5px;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, .07);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 body {
   background: linear-gradient(60deg, #b64d4d, #ca8b43, #cac143, #3cc2a3, #543fc9, #c938a5);
   background-size: 1000% 1000%;
@@ -95,8 +109,3 @@ div.purple {
   margin: 1rem;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
