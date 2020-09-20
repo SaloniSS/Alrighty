@@ -8,6 +8,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
+import logo from './logo.png';
 
 import "./App.css";
 
@@ -55,7 +56,7 @@ function App() {
     const overallTone = toneData.document_tone.tones.map((tone) => (
       <div className="wrapper">
         <div className={getColor(tone)
-            }></div>
+        }></div>
         <h3>
           {tone.tone_name} - {Math.floor(tone.score * 100)}%
         </h3>
@@ -80,9 +81,8 @@ function App() {
       });
     }
 
-    const widthCheck = isChecked ? "40%" : "70%";
     return (
-      <Card style={{ width: widthCheck }}>
+      <Card style={{ width: "85%", margin: "1rem" }}>
         {lineByLine && (
           <CardContent>
             {overallTone} <p>{lineByLine}</p>
@@ -117,7 +117,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Tonus</h1>
+
+      <img src={logo}/>
       <div>
         Type
         <Select
@@ -139,11 +140,11 @@ function App() {
       <TextField
         placeholder="Enter text to be analyzed here..."
         multiline
-        rows={4}
+        rows={8}
         value={textToAnalyze}
         onChange={handleChange}
         variant="filled"
-        style={{ width: "500px" }}
+        style={{ width: "85%" }}
       />
       <Button
         variant="contained"
@@ -155,6 +156,8 @@ function App() {
         Analyze
         {loading && <CircularProgress size={24} />}
       </Button>
+
+
       <div className="card">
         {toneData && displayToneData()}
         {isChecked && subData && displaySubData()}
