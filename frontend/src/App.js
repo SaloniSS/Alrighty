@@ -37,14 +37,16 @@ function App() {
   const getColor = (tone) => {
     console.log(tone.tone_id);
     switch (tone.tone_id) {
-      case "analytic":
-        return "blue";
-      case "tentative":
+      case "analytical":
         return "green";
-      case "joy":
-        return "blue";
-      case "sadness":
+      case "tentative":
         return "red";
+      case "joy":
+        return "orange";
+      case "sadness":
+        return "purple";
+      case "confident":
+        return "blue";
       default:
         return "black";
     }
@@ -85,7 +87,7 @@ function App() {
 
   const displaySubData = () => {
     return (
-      <Card width="40%">
+      <Card width="70%">
         <CardContent>
           <p>{subData}</p>
         </CardContent>
